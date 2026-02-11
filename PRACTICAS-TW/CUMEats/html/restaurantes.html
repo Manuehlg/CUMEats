@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CUMEats | Restaurantes</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<header class="header">
+    <a href="inicio.html">
+        <img src="../assets/logo.jpg" alt="CUMEats logo" class="logo">
+    </a>
+
+    <input type="text"
+           placeholder="Buscar restaurante o comida"
+           class="header-search">
+
+    <nav class="nav-right">
+        <a href="inicio.html">Inicio</a>
+        <a href="login.html" id="loginLink" class="login-btn">
+            Iniciar sesión
+        </a>
+        <a href="registro.html" class="register-btn">
+            Crear cuenta
+        </a>
+    </nav>
+</header>
+
+<main class="restaurants-page">
+
+    <aside class="filters">
+        <h3>Filtros</h3>
+
+        <label>
+            <input type="checkbox">
+            Rating +4
+        </label>
+
+        <label>
+            <input type="checkbox">
+            Entrega rápida
+        </label>
+
+        <label>
+            <input type="checkbox">
+            Abierto ahora
+        </label>
+    </aside>
+
+    <section class="restaurants">
+        <!-- Las cards se generan con JavaScript -->
+    </section>
+
+</main>
+
+<footer class="footer">
+    <p>© 2026 CUMEats</p>
+</footer>
+
+<!-- SOLO UN JS -->
+<script src="../js/app.js"></script>
+
+</body>
+</html>
