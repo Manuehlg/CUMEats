@@ -2,16 +2,25 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CUMEats | Comida a domicilio</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 
 <header class="header">
-    <img src="../assets/logo.jpg" alt="CUMEats logo" class="logo">
+    <a href="inicio.html">
+        <img src="../assets/logo.jpg" alt="CUMEats logo" class="logo">
+    </a>
+
+    <div class="brand-text">
+        <p class="brand-title">CUMEats</p>
+        <p class="brand-slogan">
+            <span id="dynamic-slogan">Tu comida favorita, en casa</span>
+        </p>
+    </div>
 
     <nav class="nav-right">
-        <a href="inicio.html">Inicio</a>
         <a href="login.html" id="loginLink" class="login-btn">
             Iniciar sesión
         </a>
@@ -26,8 +35,13 @@
     <p>Los mejores restaurantes cerca de ti</p>
 
     <div class="search-box">
-        <input type="text" placeholder="Introduce tu dirección">
-        <a href="restaurants.html" class="btn-primary">Buscar</a>
+        <div class="autocomplete-wrapper">
+            <label for="hero-search" class="sr-only">Dirección o localidad</label>
+            <input type="search" id="hero-search" name="buscar"
+                   placeholder="Introduce tu dirección o localidad" autocomplete="off">
+            <ul id="autocomplete-list" class="autocomplete-list" role="listbox"></ul>
+        </div>
+        <button class="btn-primary" id="hero-search-btn">Buscar</button>
     </div>
 </section>
 
@@ -35,10 +49,10 @@
     <h2>Categorías populares</h2>
 
     <div class="category-grid">
-        <div class="category">🍕 Pizza</div>
-        <div class="category">🍔 Burgers</div>
-        <div class="category">🍣 Sushi</div>
-        <div class="category">🌮 Mexicana</div>
+        <a href="restaurantes.html?categoria=pizza" class="category">🍕 Pizza</a>
+        <a href="restaurantes.html?categoria=burgers" class="category">🍔 Burgers</a>
+        <a href="restaurantes.html?categoria=sushi" class="category">🍣 Sushi</a>
+        <a href="restaurantes.html?categoria=mexicana" class="category">🌮 Mexicana</a>
     </div>
 </section>
 
@@ -46,5 +60,6 @@
     <p>© 2026 CUMEats · Proyecto universitario</p>
 </footer>
 
+<script src="../js/app.js"></script>
 </body>
 </html>

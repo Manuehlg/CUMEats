@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Restaurante | CUMEats</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<header class="header">
+    <a href="inicio.html">
+        <img src="../assets/logo.jpg" class="logo" alt="CUMEats Logo">
+    </a>
+
+    <div class="brand-text">
+        <p class="brand-title">CUMEats</p>
+        <p class="brand-slogan"><span id="dynamic-slogan">Pide facil. Come mejor.</span></p>
+    </div>
+
+    <nav class="nav-right">
+        <a href="inicio.html">Inicio</a>
+        <a href="login.html" id="loginLink" class="login-btn">Iniciar sesión</a>
+        <a href="registro.html" class="register-btn">Crear cuenta</a>
+    </nav>
+</header>
+
+<main class="restaurant-detail">
+    <div class="detail-topbar">
+        <button class="back-btn" type="button">← Volver</button>
+        <a id="edit-link" href="#" class="btn-edit-rest">✏️ Editar restaurante</a>
+    </div>
+
+    <section class="restaurant-info" aria-labelledby="restaurantName">
+        <h1 id="restaurantName"></h1>
+
+        <dl class="info-grid">
+            <div class="info-item">
+                <dt>Dirección</dt>
+                <dd id="restaurantAddress"></dd>
+            </div>
+            <div class="info-item">
+                <dt>Teléfono</dt>
+                <dd id="restaurantPhone"></dd>
+            </div>
+            <div class="info-item">
+                <dt>Email</dt>
+                <dd id="restaurantEmail"></dd>
+            </div>
+            <div class="info-item">
+                <dt>Precio mínimo</dt>
+                <dd>€<span id="restaurantPrice"></span></dd>
+            </div>
+            <div class="info-item">
+                <dt>Categorías</dt>
+                <dd id="restaurantCategories"></dd>
+            </div>
+            <div class="info-item">
+                <dt>Valoración media</dt>
+                <dd>⭐ <span id="restaurantRating"></span></dd>
+            </div>
+            <div class="info-item">
+                <dt>Bike Friendly</dt>
+                <dd id="restaurantBike"></dd>
+            </div>
+        </dl>
+    </section>
+
+    <section class="menu-section" aria-label="Carta del restaurante">
+        <h2>Carta del restaurante</h2>
+        <div id="menuContainer" class="menu-grid"></div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <p>© 2026 CUMEats</p>
+</footer>
+
+<script src="../js/app.js"></script>
+</body>
+</html>

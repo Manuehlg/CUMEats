@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CUMEats | Login</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
@@ -11,13 +12,19 @@
     <a href="inicio.html">
         <img src="../assets/logo.jpg" alt="CUMEats logo" class="logo">
     </a>
-    <a href="registro.html" class="register-btn">
-        Crear cuenta
-    </a>
+
+    <div class="brand-text">
+        <p class="brand-title">CUMEats</p>
+        <p class="brand-slogan">
+            <span id="dynamic-slogan">Tu comida favorita, en casa</span>
+        </p>
+    </div>
 
     <nav class="nav-right">
         <a href="inicio.html">Inicio</a>
-
+        <a href="registro.html" class="register-btn">
+            Crear cuenta
+        </a>
     </nav>
 </header>
 
@@ -25,29 +32,34 @@
     <div class="login-content">
 
         <div class="brand-section">
-            <h1 class="company-name">CUM<span>Eats</span></h1>
+            <p class="company-name">CUM<span>Eats</span></p>
         </div>
 
-        <form class="form" id="loginForm">
+        <form class="form" id="loginForm" novalidate>
 
-            <h2 class="form-title">Iniciar Sesión</h2>
+            <h1 class="form-title">Iniciar Sesión</h1>
 
             <div class="input-group">
-                <label>Email</label>
-                <input type="email" id="email" required>
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" name="email"
+                       placeholder="correo@ejemplo.com" required autocomplete="email">
+                <span class="form-error" id="err-login-email" role="alert"></span>
             </div>
 
             <div class="input-group">
-                <label>Contraseña</label>
-                <input type="password" id="password" required>
-                <button type="button" class="toggle-password">
-                    Mostrar / Ocultar
-                </button>
+                <label for="login-password">Contraseña</label>
+                <div class="password-wrapper">
+                    <input type="password" id="login-password" name="password"
+                           placeholder="Tu contraseña" required autocomplete="current-password">
+                    <button type="button" class="toggle-password" data-target="login-password"
+                            aria-label="Mostrar u ocultar contraseña">👁</button>
+                </div>
+                <span class="form-error" id="err-login-password" role="alert"></span>
             </div>
 
-            <button type="submit" class="submit-btn">
-                Iniciar Sesión
-            </button>
+            <button type="submit" class="submit-btn">Iniciar Sesión</button>
+
+            <p class="form-switch">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
 
         </form>
 

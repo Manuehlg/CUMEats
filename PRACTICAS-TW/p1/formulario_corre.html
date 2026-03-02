@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario HTML5 con IDs</title>
+</head>
+<body>
+
+<!-- 🟦 AZUL: Estructura semántica añadida -->
+<main>
+
+    <h1>Formulario</h1>
+
+    <!-- 🟥 ROJO: Se añaden action y method -->
+    <form action="procesar.php" method="post">
+
+        <fieldset>
+            <legend>Texto y credenciales</legend>
+
+            <label for="txtNombre">Text</label>
+            <!-- 🟥 ROJO: name añadido -->
+            <!-- 🟩 VERDE: autocomplete -->
+            <!-- 🟨 AMARILLO: maxlength añadido -->
+            <input id="txtNombre" name="nombre" type="text"
+                   required minlength="3" maxlength="50"
+                   autocomplete="name">
+
+            <label for="txtPassword">Password</label>
+            <!-- 🟥 ROJO: name añadido -->
+            <!-- 🟩 VERDE: autocomplete -->
+            <input id="txtPassword" name="password" type="password"
+                   required minlength="8"
+                   autocomplete="new-password">
+
+            <label for="txtSearch">Search</label>
+            <!-- 🟥 ROJO: name añadido -->
+            <input id="txtSearch" name="busqueda" type="search"
+                   autocomplete="off">
+
+            <label for="txtEmail">Email</label>
+            <!-- 🟥 ROJO: name añadido -->
+            <!-- 🟩 VERDE: autocomplete -->
+            <input id="txtEmail" name="email" type="email"
+                   required autocomplete="email">
+
+            <label for="txtTel">Tel</label>
+            <!-- 🟥 ROJO: name añadido -->
+            <!-- 🟨 AMARILLO: mejora pattern -->
+            <input id="txtTel" name="telefono" type="tel"
+                   pattern="[0-9]{9}"
+                   inputmode="numeric"
+                   title="Debe contener 9 dígitos"
+                   autocomplete="tel">
+
+            <label for="txtUrl">URL</label>
+            <!-- 🟥 ROJO: name añadido -->
+            <input id="txtUrl" name="web" type="url"
+                   autocomplete="url">
+        </fieldset>
+
+        <fieldset>
+            <legend>Números y rangos</legend>
+
+            <label for="numEdad">Edad</label>
+            <!-- 🟥 ROJO: tipo corregido -->
+            <!-- 🟨 AMARILLO: min, max añadidos -->
+            <input id="numEdad" name="edad"
+                   type="number"
+                   min="0" max="100"
+                   required>
+
+            <label for="rngNivel">Range</label>
+            <!-- 🟥 ROJO: name añadido -->
+            <!-- 🟨 AMARILLO: step añadido -->
+            <input id="rngNivel" name="nivel_rango"
+                   type="range"
+                   min="0" max="10" step="1">
+        </fieldset>
+
+        <fieldset>
+            <legend>Fechas y tiempo</legend>
+
+            <label for="dateFecha">Date</label>
+            <input id="dateFecha" name="fecha" type="date">
+
+            <label for="timeHora">Time</label>
+            <input id="timeHora" name="hora" type="time">
+
+            <label for="dtLocal">Datetime-local</label>
+            <input id="dtLocal" name="fechahora" type="datetime-local">
+
+            <label for="monthMes">Month</label>
+            <input id="monthMes" name="mes" type="month">
+
+            <label for="weekSemana">Week</label>
+            <input id="weekSemana" name="semana" type="week">
+        </fieldset>
+
+        <fieldset>
+            <legend>Selecciones</legend>
+
+            <label>
+                <input id="chkHtml" type="checkbox" name="skills[]" value="html">
+                HTML
+            </label>
+
+            <label>
+                <input id="chkCss" type="checkbox" name="skills[]" value="css">
+                CSS
+            </label>
+
+            <label>
+                <input id="chkJs" type="checkbox" name="skills[]" value="js">
+                JavaScript
+            </label>
+
+            <!-- 🟥 ROJO: id corregido + name añadido -->
+            <label for="chkTerms">
+                <input id="chkTerms" name="terminos" type="checkbox" required>
+                Acepto términos
+            </label>
+
+            <!-- 🟥 ROJO: value añadido -->
+            <label>
+                <input id="radJunior" type="radio" name="nivel" value="junior" required>
+                Junior
+            </label>
+
+            <label>
+                <input id="radSenior" type="radio" name="nivel" value="senior">
+                Senior
+            </label>
+
+            <label for="selOpcion">Select</label>
+            <!-- 🟥 ROJO: name añadido -->
+            <select id="selOpcion" name="opcion" required>
+                <option value="">-- Selecciona --</option>
+                <option value="1">Opción 1</option>
+                <option value="2">Opción 2</option>
+            </select>
+        </fieldset>
+
+        <fieldset>
+            <legend>Otros inputs</legend>
+
+            <label for="colorFav">Color</label>
+            <input id="colorFav" name="color" type="color">
+
+            <label for="fileDoc">File</label>
+            <!-- 🟥 ROJO: name añadido -->
+            <input id="fileDoc" name="documento" type="file" accept=".pdf,.jpg">
+
+            <!-- 🟥 ROJO: name añadido -->
+            <input id="hiddenToken" name="token" type="hidden" value="dato_oculto">
+
+            <label for="imgSubmit">Image</label>
+            <input id="imgSubmit" type="image"
+                   src="https://unexx.es/80"
+                   alt="Enviar formulario">
+        </fieldset>
+
+        <fieldset>
+            <legend>Campos adicionales</legend>
+
+            <label for="txtComentarios">Textarea</label>
+            <!-- 🟥 ROJO: id duplicado corregido -->
+            <!-- 🟥 ROJO: name añadido -->
+            <textarea id="txtComentarios"
+                      name="comentarios"
+                      minlength="10"
+                      maxlength="200"
+                      required></textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Botones</legend>
+
+            <input id="btnSubmit" type="submit" value="Submit">
+            <input id="btnReset" type="reset" value="Reset">
+            <input id="btnNormal" type="button" value="Button">
+        </fieldset>
+
+    </form>
+
+</main>
+
+</body>
+</html>

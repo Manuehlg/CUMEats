@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario HTML5 con IDs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+        fieldset {
+            margin-top: 20px;
+            padding: 10px;
+        }
+        input, select, textarea {
+            margin-top: 5px;
+        }
+
+        /* =====================================================
+           LEYENDA DE COLORES:
+           🟦 AZUL    → Semántica HTML5
+           🟩 VERDE   → Accesibilidad y usabilidad
+           🟨 AMARILLO→ Tipado y validación HTML5
+           🟥 ROJO    → Errores de calidad del código
+           ===================================================== */
+
+        /* 🟦 Estilos para resaltar visualmente las secciones semánticas añadidas */
+        header { border-bottom: 2px solid #4a90d9; padding-bottom: 8px; margin-bottom: 16px; }
+        main   { max-width: 700px; }
+    </style>
+</head>
+<body>
+
+<!-- 🟦 AZUL: Se añade <header> y <main> para estructura semántica HTML5 correcta -->
+<header>
+    <h1>Formulario</h1>
+</header>
+
+<main>
+
+<!-- 🟥 ROJO: Se añade method="post" y action="#" al <form> — sin ellos el formulario no tiene envío definido -->
+<!-- 🟩 VERDE: Se añade novalidate="false" implícito; se usa role="form" para reforzar accesibilidad en lectores de pantalla -->
+<form action="#" method="post" aria-label="Formulario de ejemplo HTML5">
+
+    <fieldset>
+        <legend>Texto y credenciales</legend>
+
+        <label for="txtNombre">Nombre</label>
+        <!-- 🟥 ROJO: Faltaba name="" — sin name el campo NO se envía al servidor -->
+        <!-- 🟩 VERDE: Se añade autocomplete y placeholder para mejorar usabilidad -->
+        <input id="txtNombre" type="text" name="nombre" required minlength="3"
+               autocomplete="name" placeholder="Ej: Juan García">
+
+        <label for="txtPassword">Password</label>
+        <!-- 🟥 ROJO: Faltaba name -->
+        <!-- 🟩 VERDE: autocomplete="new-password" indicado para contraseñas nuevas -->
+        <input id="txtPassword" type="password" name="password" required minlength="8"
+               autocomplete="new-password" placeholder="Mínimo 8 caracteres">
+
+        <label for="txtSearch">Search</label>
+        <!-- 🟥 ROJO: Faltaba name -->
+        <input id="txtSearch" type="search" name="busqueda" placeholder="Buscar...">
+
+        <label for="txtEmail">Email</label>
+        <!-- 🟥 ROJO: Faltaba name -->
+        <!-- 🟩 VERDE: autocomplete="email" y inputmode para teclado correcto en móvil -->
+        <!-- 🟨 AMARILLO: Se añade inputmode="email" para teclado optimizado en móviles -->
+        <input id="txtEmail" type="email" name="email" required
+               autocomplete="email" placeholder="ejemplo@correo.com" inputmode="email">
+
+        <label for="txtTel">Teléfono</label>
+        <!-- 🟥 ROJO: Faltaba name -->
+        <!-- 🟨 AMARILLO: Se añade inputmode="tel" para teclado numérico en móviles -->
+        <!-- 🟩 VERDE: autocomplete="tel" mejora la autocompletación -->
+        <input id="txtTel" type="tel" name="telefono" pattern="[0-9]{9}" title="9 dígitos numéricos"
+               autocomplete="tel" placeholder="600123456" inputmode="tel">
+
+        <label for="txtUrl">URL</label>
+        <!-- 🟥 ROJO: Faltaba name -->
+        <!-- 🟨 AMARILLO: Se añade inputmode="url" -->
+        <input id="txtUrl" type="url" name="url" placeholder="https://ejemplo.com" inputmode="url">
+    </fieldset>
+
+    <fieldset>
+        <legend>Números y rangos</legend>
+
+        <label for="numEdad">Edad (número)</label>
+        <!-- 🟥 ROJO: type="date" era INCORRECTO para un campo numérico de edad — corregido a type="number" -->
+        <!-- 🟥 ROJO: min="0" max="100" tiene sentido para número, no para fecha -->
+        <!-- 🟥 ROJO: Faltaba name -->
+        <!-- 🟨 AMARILLO: type="number" correcto; inputmode="numeric" para teclado numérico en móvil -->
+        <input id="numEdad" type="number" name="edad" min="0" max="100"
+               inputmode="numeric" placeholder="Ej: 25">
+
+        <label for="rngNivel">Nivel (0-10): <output for="rngNivel" id="outNivel">5</output></label>
+        <!-- 🟥 ROJO: Faltaba name -->
+        <!-- 🟦 AZUL: Se asocia <output> al range para mostrar el valor actual (semántica HTML5) -->
+        <!-- 🟩 VERDE: oninput actualiza el output en tiempo real mejorando la usabilidad -->
+        <input id="rngNivel" type="range" name="nivel" min="0" max="10" value="5"
+               oninput="document.getElementById('outNivel').value = this.value">
+    </fieldset>
+
+    <fieldset>
+        <legend>Fechas y tiempo</legend>
+
+        <label for="dateFecha">Fecha</label>
+        <!-- 🟥 ROJO: Faltaba name -->
+        <input id="dateFecha" type="date" name="fecha">
+
+        <label for="timeHora">Hora</label>
+        <!-- 🟥 ROJO: Faltaba name -->
+        <input id="timeHora" type="time" name="hora">
+
+        <label for="dtLocal">Fecha y hora local</label>
+        <!-- 🟥 ROJO: Faltaba name -->
+        <input id="dtLocal" type="datetime-local" name="fecha_hora">
+
+        <label for="monthMes">Mes</label>
+        <!-- 🟥 ROJO: Faltaba name -->
+        <input id="monthMes" type="month" name="mes">
+
+        <label for="weekSemana">Semana</label>
+        <!-- 🟥 ROJO: Faltaba name -->
+        <input id="weekSemana" type="week" name="semana">
+    </fieldset>
+
+    <fieldset>
+        <legend>Selecciones</legend>
+
+        <!-- 🟩 VERDE: Los checkboxes ya usan el patrón label-envolvente, correcto para accesibilidad -->
+        <label>
+            <input id="chkHtml" type="checkbox" name="skills[]" value="html">
+            HTML
+        </label>
+
+        <label>
+            <input id="chkCss" type="checkbox" name="skills[]" value="css">
+            CSS
+        </label>
+
+        <label>
+            <input id="chkJs" type="checkbox" name="skills[]" value="js">
+            JavaScript
+        </label>
+
+        <!-- 🟥 ROJO: El label tenía for="chkTerms" pero el input tenía id="achkTerms" — IDs no coincidían. Corregido. -->
+        <!-- 🟥 ROJO: Faltaba name al checkbox de términos -->
+        <label for="chkTerms">
+            <input id="chkTerms" type="checkbox" name="terminos" value="aceptado" required>
+            Acepto los términos y condiciones
+        </label>
+
+        <!-- 🟥 ROJO: Los radios de nivel no tenían value definido — sin value se envía "on", inútil -->
+        <label>
+            <input id="radJunior" type="radio" name="nivel_experiencia" value="junior" required>
+            Junior
+        </label>
+
+        <label>
+            <input id="radSenior" type="radio" name="nivel_experiencia" value="senior">
+            Senior
+        </label>
+
+        <label for="selOpcion">Opción</label>
+        <!-- 🟥 ROJO: Faltaba name al select -->
+        <select id="selOpcion" name="opcion" required>
+            <option value="">-- Selecciona --</option>
+            <option value="opcion1">Opción 1</option>
+            <option value="opcion2">Opción 2</option>
+        </select>
+    </fieldset>
+
+    <fieldset>
+        <legend>Otros inputs</legend>
+
+        <label for="colorFav">Color favorito</label>
+        <!-- 🟥 ROJO: Faltaba name -->
+        <input id="colorFav" type="color" name="color_fav">
+
+        <label for="fileDoc">Documento</label>
+        <!-- 🟥 ROJO: Faltaba name -->
+        <input id="fileDoc" type="file" name="documento" accept=".pdf,.jpg">
+
+        <input id="hiddenToken" type="hidden" name="token" value="dato_oculto">
+
+        <!-- 🟥 ROJO: El <label> de Image no tenía for apuntando al input correcto -->
+        <!-- 🟩 VERDE: Se añade for="imgSubmit" para asociar correctamente el label -->
+        <label for="imgSubmit">Enviar con imagen</label>
+        <input id="imgSubmit" type="image"
+               src="https://placehold.co/80"
+               alt="Enviar formulario">
+    </fieldset>
+
+    <fieldset>
+        <legend>Campos adicionales</legend>
+
+        <!-- 🟥 ROJO: id="txtNombre" DUPLICADO — ya existía en el primer input de texto. Corregido a id="txtComentarios" -->
+        <!-- 🟥 ROJO: Faltaba name en el textarea -->
+        <!-- 🟩 VERDE: Se añade placeholder para orientar al usuario -->
+        <label for="txtComentarios">Comentarios</label>
+        <textarea id="txtComentarios"
+                  name="comentarios"
+                  minlength="10"
+                  maxlength="200"
+                  rows="4"
+                  required
+                  placeholder="Escribe aquí tus comentarios (mínimo 10 caracteres)..."></textarea>
+    </fieldset>
+
+    <fieldset>
+        <legend>Botones</legend>
+        <!-- 🟦 AZUL: Se recomienda usar <button> en lugar de <input type="submit/reset/button"> para mayor semántica -->
+        <button id="btnSubmit" type="submit">Submit</button>
+        <button id="btnReset" type="reset">Reset</button>
+        <button id="btnNormal" type="button">Button</button>
+    </fieldset>
+
+</form>
+
+</main>
+<!-- 🟦 AZUL: Cierre de <main> — estructura semántica correcta -->
+
+</body>
+</html>
