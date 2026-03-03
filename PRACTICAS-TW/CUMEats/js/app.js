@@ -645,7 +645,8 @@ const slogans = [
     "Tu recompensa por ese 5",
     "Cocinar es de graduados",
     "Estudiar da hambre",
-    "Te has quedado sin tupers?"
+    "Te has quedado sin tupers?",
+    "Elige no morir de hambre"
 ];
 
 let sloganIndex = 0;
