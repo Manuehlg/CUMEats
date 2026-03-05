@@ -58,19 +58,7 @@ a {
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-/* Accesibilidad: label invisible */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    white-space: nowrap;
-    border: 0;
+    position: relative;
 }
 
 .logo {
@@ -99,30 +87,22 @@ a {
 }
 
 .hero h1 {
+    font-family: 'Spongeboy Me Bob';
     font-size: 2.5rem;
     margin-bottom: 10px;
 }
 
 .hero p {
+    font-family: 'Spongeboy Me Bob';
     margin-bottom: 25px;
     font-size: 1.1rem;
 }
 
 .search-box {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    max-width: 480px;
+    max-width: 520px;
     margin: 0 auto;
 }
 
-.search-box input {
-    padding: 10px 16px;
-    border-radius: 30px;
-    border: none;
-    width: 200px;
-}
 
 /* =====================
    BOTONES
@@ -162,18 +142,29 @@ a {
 }
 
 .category {
-    background: var(--gray);
-    padding: 20px;
-    border-radius: 12px;
+    padding: 22px 16px;
+    border-radius: 14px;
     text-align: center;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 1rem;
     cursor: pointer;
-    transition: transform 0.2s;
+    color: #fff;
+    transition: box-shadow 0.2s;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+/* Colores sólidos por categoría */
+.category:nth-child(1) { background: #e53935; } /* Pizza - rojo */
+.category:nth-child(2) { background: #fb8c00; } /* Burgers - naranja */
+.category:nth-child(3) { background: #1e88e5; } /* Sushi - azul */
+.category:nth-child(4) { background: #43a047; } /* Mexicana - verde */
+
+
 .category:hover {
-    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.32);
 }
+
 
 /* =====================
    PÁGINA RESTAURANTES
@@ -312,13 +303,13 @@ a {
 
 /* Checkboxes */
 .filter-check {
-    display: flex !important;
+    display: flex;
     align-items: center;
     gap: 8px;
     cursor: pointer;
     font-size: 0.9rem;
     color: var(--dark);
-    margin-bottom: 0 !important;
+    margin-bottom: 0;
 }
 
 .filter-check input[type="checkbox"] {
@@ -352,6 +343,7 @@ a {
    WRAPPER RESTAURANTES
 ===================== */
 .restaurants-wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -406,6 +398,7 @@ a {
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .restaurant-card:hover {
@@ -418,6 +411,7 @@ a {
     height: 160px;
     object-fit: cover;
 }
+
 
 .card-body {
     padding: 14px 16px 16px;
@@ -635,17 +629,19 @@ a {
 /* Mensajes de error inline */
 .form-error {
     font-size: 0.78rem;
-    color: #ff4d4d;
+    color: #8e0c0c;
     min-height: 14px;
     display: block;
 }
 
 /* Borde de validación en inputs */
+.input-group .input-invalid,
 .input-invalid {
     border: 2px solid #ff4d4d;
     background: #fff5f5;
 }
 
+.input-group .input-valid,
 .input-valid {
     border: 2px solid #4caf50;
 }
@@ -670,28 +666,60 @@ a {
 
 .autocomplete-wrapper {
     position: relative;
-    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+    overflow: visible;
+    z-index: 1000;
+    transition: border-radius 0.15s;
 }
 
 .autocomplete-wrapper input {
-    width: 100%;
-    padding: 10px 16px;
-    border-radius: 30px;
+    flex: 1;
+    padding: 10px 18px;
     border: none;
+    border-radius: 30px 0 0 30px;
     font-size: 0.95rem;
     outline: none;
+    background: transparent;
+    min-width: 200px;
+}
+
+.autocomplete-wrapper .btn-primary {
+    border-radius: 0 30px 30px 0;
+    padding: 10px 20px;
+    white-space: nowrap;
+    box-shadow: none;
+    transition: border-radius 0.15s;
+}
+
+/* Cuando la lista está visible, las esquinas inferiores se aplanan */
+.autocomplete-wrapper.open {
+    border-radius: 16px 16px 0 0;
+}
+
+.autocomplete-wrapper.open input {
+    border-radius: 16px 0 0 0;
+}
+
+.autocomplete-wrapper.open .btn-primary {
+    border-radius: 0 16px 0 0;
 }
 
 .autocomplete-list {
     position: absolute;
-    top: calc(100% + 6px);
+    top: 100%;
     left: 0;
     right: 0;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.13);
+    border-top: 1px solid #f0f0f0;
     list-style: none;
-    padding: 6px 0;
+    padding: 4px 0;
     margin: 0;
     z-index: 999;
     overflow: hidden;
@@ -743,15 +771,30 @@ a {
     margin-top: 1rem;
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-right a {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.nav-right a:hover {
+    color: var(--primary);
+}
 
 /* ===========================
-   BOTONES HEADER NAV
+   BOTÓN LOGIN HEADER
 =========================== */
+
 
 .login-btn {
     padding: 8px 16px;
     background-color: #ff4d4d;
-    color: white !important;
+    color: white;
     border-radius: 20px;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -772,33 +815,19 @@ a {
 }
 
 .register-btn:hover {
-    background-color: #ff8000;
-    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* Marca centrada con flexbox (sin position:absolute) */
+/* Marca */
 .brand,
 .brand-text {
     display: flex;
     align-items: center;
     gap: 12px;
-    flex: 1;
-    justify-content: center;
-}
-
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.nav-right a {
-    font-weight: 600;
-    color: var(--dark);
-}
-
-.nav-right a:hover {
-    color: var(--primary);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .brand-title {
@@ -831,7 +860,7 @@ a {
 
 /* animación suave con slide hacia arriba */
 .fade {
-    opacity: 0 !important;
+    opacity: 0;
     transform: translateY(-6px);
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
@@ -845,6 +874,7 @@ a {
 /* =====================
    PÁGINA DE DETALLE
 ===================== */
+
 .restaurant-detail {
     max-width: 1000px;
     margin: 30px auto;
@@ -876,12 +906,37 @@ a {
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.restaurant-info h1 {
+.restaurant-info h2 {
     font-size: 2rem;
     color: var(--primary);
     margin-bottom: 20px;
     border-bottom: 2px solid var(--light-gray);
     padding-bottom: 10px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.info-item {
+    padding: 10px;
+    background: var(--gray);
+    border-radius: 8px;
+}
+
+.info-item strong {
+    display: block;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.info-item p {
+    font-size: 1.1rem;
+    color: var(--dark);
+    margin: 0;
 }
 
 /* =====================
@@ -895,7 +950,7 @@ a {
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.menu-section h2 {
+.menu-section h3 {
     font-size: 1.5rem;
     margin-bottom: 20px;
     color: var(--dark);
@@ -1005,7 +1060,7 @@ a {
         grid-template-columns: 1fr;
     }
 
-    .restaurant-info h1 {
+    .restaurant-info h2 {
         font-size: 1.6rem;
     }
 }
@@ -1121,166 +1176,77 @@ a {
 }
 
 .edit-field input:focus,
-.edit-field select:focus {
+.edit-field select:focus,
+.edit-field textarea:focus {
     border-color: var(--primary);
 }
 
+/* Textarea */
+.edit-field textarea {
+    padding: 10px 12px;
+    border: 1.5px solid var(--light-gray);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    resize: vertical;
+    font-family: inherit;
+    transition: border-color 0.2s;
+    background: var(--white);
+}
+
+/* Fieldset para checkboxes y radios */
+.edit-fieldset {
+    border: 1.5px solid var(--light-gray);
+    border-radius: 8px;
+    padding: 14px 16px;
+    background: var(--white);
+}
+
+.edit-legend {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    padding: 0 6px;
+}
+
+.edit-checkboxes,
+.edit-radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.edit-check-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    color: var(--dark);
+    cursor: pointer;
+}
+
+.edit-check-label input[type="checkbox"],
+.edit-check-label input[type="radio"] {
+    accent-color: var(--primary);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+}
+
+.edit-field .input-error,
 .input-error {
     border-color: #e53935;
-}
-
-/* =====================
-   FILTERS TITLE (h2 en aside)
-===================== */
-.filters-title {
-    font-size: 1.1rem;
-    margin-bottom: 18px;
-    color: var(--dark);
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--light-gray);
-}
-
-/* =====================
-   DL/DT/DD INFO RESTAURANTE
-===================== */
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.info-item {
-    padding: 10px;
-    background: var(--gray);
-    border-radius: 8px;
-}
-
-.info-item dt {
-    font-weight: 700;
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-}
-
-.info-item dd {
-    font-size: 1.1rem;
-    color: var(--dark);
-    margin: 0;
 }
 
 .field-error {
     font-size: 0.78rem;
     color: #e53935;
     min-height: 14px;
-}
-
-/* Tags */
-.tags-input-wrapper {
-    border: 1.5px solid var(--light-gray);
-    border-radius: 8px;
-    padding: 8px 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    align-items: center;
-    background: var(--white);
-    transition: border-color 0.2s;
-}
-
-.tags-input-wrapper:focus-within {
-    border-color: var(--primary);
-}
-
-.tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
-.edit-tag {
-    background: var(--primary);
-    color: var(--white);
-    border-radius: 20px;
-    padding: 3px 10px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.tag-remove {
-    background: none;
-    border: none;
-    color: var(--white);
-    cursor: pointer;
-    font-size: 1rem;
-    line-height: 1;
-    padding: 0;
-    opacity: 0.8;
-}
-
-.tag-remove:hover { opacity: 1; }
-
-.tag-input {
-    border: none;
-    outline: none;
-    font-size: 0.9rem;
-    flex: 1;
-    min-width: 140px;
-    background: transparent;
-}
-
-/* Toggle Bike friendly */
-.toggle-label {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--dark);
-    padding: 4px 0;
-}
-
-.toggle-switch {
-    position: relative;
-    width: 46px;
-    height: 26px;
-}
-
-.toggle-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.toggle-slider {
-    position: absolute;
-    inset: 0;
-    background: #ccc;
-    border-radius: 26px;
-    transition: background 0.3s;
-}
-
-.toggle-slider::before {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    left: 3px;
-    top: 3px;
-    background: var(--white);
-    border-radius: 50%;
-    transition: transform 0.3s;
-}
-
-.toggle-switch input:checked + .toggle-slider {
-    background: var(--primary);
-}
-
-.toggle-switch input:checked + .toggle-slider::before {
-    transform: translateX(20px);
 }
 
 /* Añadir plato */
@@ -1434,6 +1400,110 @@ a {
 .btn-save:hover {
     background: var(--primary-dark);
     transform: translateY(-2px);
+}
+
+/* =====================
+   SPINNER / INDICADORES DE CARGA
+===================== */
+
+/* Spinner circular reutilizable */
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 4px solid var(--light-gray);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Overlay de carga que cubre un contenedor */
+.loading-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(2px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-radius: inherit;
+    z-index: 50;
+    opacity: 1;
+    transition: opacity 0.25s;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-overlay p {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Skeleton card */
+.skeleton-card {
+    background: var(--white);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    animation: skeleton-pulse 1.2s ease-in-out infinite;
+}
+
+.skeleton-card .sk-img {
+    width: 100%;
+    height: 160px;
+    background: var(--light-gray);
+}
+
+.skeleton-card .sk-body {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.skeleton-card .sk-line {
+    height: 12px;
+    border-radius: 6px;
+    background: var(--light-gray);
+}
+
+.skeleton-card .sk-line.short { width: 55%; }
+.skeleton-card .sk-line.medium { width: 75%; }
+.skeleton-card .sk-line.long  { width: 100%; }
+
+@keyframes skeleton-pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.5; }
+}
+
+/* Spinner dentro del botón submit */
+.btn-loading {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+}
+
+.btn-loading::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
 }
 
 /* Toast */

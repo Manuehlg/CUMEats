@@ -27,13 +27,13 @@
 
     <div class="edit-topbar">
         <button class="back-btn" id="back-btn" type="button">← Volver</button>
-        <h1 class="edit-page-title">✏️ Editar restaurante</h1>
+        <h1 class="edit-page-title">Editar restaurante</h1>
     </div>
 
     <form id="edit-form" class="edit-layout" novalidate>
 
         <section class="edit-card" aria-labelledby="section-info">
-            <h2 id="section-info" class="edit-section-title">📋 Información general</h2>
+            <h2 id="section-info" class="edit-section-title">Información general</h2>
 
             <div class="edit-grid">
                 <div class="edit-field">
@@ -42,9 +42,9 @@
                     <span class="field-error" id="err-name" role="alert"></span>
                 </div>
 
-                <div class="edit-field">
+                <div class="edit-field edit-field--full">
                     <label for="edit-address">Dirección</label>
-                    <input type="text" id="edit-address" name="direccion" placeholder="Calle, número, ciudad" required>
+                    <textarea id="edit-address" name="direccion" placeholder="Calle, número, ciudad" required rows="3"></textarea>
                     <span class="field-error" id="err-address" role="alert"></span>
                 </div>
 
@@ -75,40 +75,45 @@
                     <label for="edit-delivery">Tiempo de entrega</label>
                     <input type="text" id="edit-delivery" name="tiempoEntrega" placeholder="Ej: 20-30 min">
                 </div>
-
-                <div class="edit-field">
-                    <label for="edit-category">Categoría principal</label>
-                    <select id="edit-category" name="categoria">
-                        <option value="pizza">🍕 Pizza</option>
-                        <option value="burgers">🍔 Burgers</option>
-                        <option value="sushi">🍣 Sushi</option>
-                        <option value="mexicana">🌮 Mexicana</option>
-                    </select>
-                </div>
             </div>
 
             <div class="edit-field edit-field--full">
-                <label for="tag-input">Etiquetas / subcategorías</label>
-                <div class="tags-input-wrapper">
-                    <div id="tags-container" class="tags-container"></div>
-                    <input type="text" id="tag-input" name="etiqueta" class="tag-input"
-                           placeholder="Escribe y pulsa Enter para añadir…">
-                </div>
+                <fieldset class="edit-fieldset">
+                    <legend class="edit-legend">Categorías</legend>
+                    <div class="edit-checkboxes">
+                        <label class="edit-check-label">
+                            <input type="checkbox" name="categoria" value="pizza"> 🍕 Pizza
+                        </label>
+                        <label class="edit-check-label">
+                            <input type="checkbox" name="categoria" value="burgers"> 🍔 Burgers
+                        </label>
+                        <label class="edit-check-label">
+                            <input type="checkbox" name="categoria" value="sushi"> 🍣 Sushi
+                        </label>
+                        <label class="edit-check-label">
+                            <input type="checkbox" name="categoria" value="mexicana"> 🌮 Mexicana
+                        </label>
+                    </div>
+                </fieldset>
             </div>
 
             <div class="edit-field edit-field--full">
-                <div class="toggle-label">
-                    <span id="bike-label">🚲 Bike friendly</span>
-                    <label class="toggle-switch" for="edit-bike" aria-labelledby="bike-label">
-                        <input type="checkbox" id="edit-bike" name="bike">
-                        <span class="toggle-slider"></span>
-                    </label>
-                </div>
+                <fieldset class="edit-fieldset">
+                    <legend class="edit-legend">🚲 Bike Friendly</legend>
+                    <div class="edit-radio-group">
+                        <label class="edit-check-label">
+                            <input type="radio" id="edit-bike-yes" name="bike" value="yes"> Sí
+                        </label>
+                        <label class="edit-check-label">
+                            <input type="radio" id="edit-bike-no" name="bike" value="no" checked> No
+                        </label>
+                    </div>
+                </fieldset>
             </div>
         </section>
 
         <section class="edit-card" aria-labelledby="section-menu">
-            <h2 id="section-menu" class="edit-section-title">🍽️ Carta del restaurante</h2>
+            <h2 id="section-menu" class="edit-section-title">Carta del restaurante</h2>
 
             <div class="add-dish-box">
                 <h3>Añadir plato</h3>
@@ -136,7 +141,7 @@
 
         <div class="edit-actions">
             <button type="button" id="cancel-btn" class="btn-cancel">Cancelar</button>
-            <button type="submit" class="btn-save">💾 Guardar cambios</button>
+            <button type="submit" class="btn-save">Guardar cambios</button>
         </div>
 
     </form>
